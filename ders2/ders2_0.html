@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input types</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            margin: 50px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        td {
+            padding: 10px;
+        }
+        td[colspan="3"] {
+            background-color: #333;
+            color: #fff;
+            font-weight: bold;
+            border-bottom: 2px solid #ccc;
+            text-align: center;
+            text-decoration: underline;
+        }
+        input[type="text"],
+        input[type="password"],
+        select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 220px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+    <!-- Style tamamen opsiyonel güzel gözüksün diye ekledim -->
+</head>
+<body>
+    <span><a href="./ders2_1.html">Kayıt formu</a></span>
+    <form name="kayit" method="post" action="">
+        <!-- Boş bırakırsan kendine döner, başka bir html'e de gönderebiliyorsun. -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td colspan="3">Input Tipleri</td>
+            </tr>
+            <tr>
+                <td>Kullanıcı Adı</td>
+                <td>:</td>
+                <td>
+                    <input type="text" name="kadi" size="30" value="preconfig">
+                    <!-- input'un 2 önemli att. var biri type birisi de name -->
+                    <!-- Value beni hatırla gibi yerlerde işimize yarayacak o yüzden çokomelli -->
+                </td>
+            </tr>
+            <tr>
+                <td>Mail</td>
+                <td>:</td>
+                <td>
+                    <input type="text" name="Mail" size="30">
+                </td>
+            </tr>
+            <tr>
+                <td>Şifre</td>
+                <td>:</td>
+                <td>
+                    <input type="password" name="sifre" size="30">
+                    <!-- type password olunca yazılanlar gizlenir -->
+                </td>
+            </tr>
+            <tr>
+                <td>Cinsiyet</td>
+                <td>:</td>
+                <td>
+                    <input type="radio" name="cins" value="erkek">Erkek
+                    <input type="radio" name="cins" value="kadin">Kadın
+                    <input type="radio" name="cins" value="diger">Diğer 
+                    <!-- radio butonlar aynı isimde olmalı ki sadece birini seçebilelim -->
+                </td>
+            </tr>
+            <tr>
+                <td>Mezuniyet</td>
+                <td>:</td>
+                <td>
+                    <input type="radio" name="mezuniyet" value="0">Ortaokul
+                    <input type="radio" name="mezuniyet" value="1">Lise
+                    <input type="radio" name="mezuniyet" checked value="2">Üniversite
+                    <!-- checked olan otomatik seçili gelir -->
+                </td>
+            </tr>
+            <tr>
+                <td>Şehir</td>
+                <td>:</td>
+                <td>
+                    <select name="sehir" >
+                        <option value="0" selected >Seçiniz</option>
+                        <option value="6">Ankara</option>
+                        <option value="34">İstanbul</option>
+                        <option value="38">Kayseri</option>
+                        <!-- selected olan otomatik olarak seçili gelir -->
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Yaş</td>
+                <td>:</td>
+                <td>
+                    <select name="yas">
+                        <option value="0" selected>Seçiniz</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <!-- value vermezsen option'un içini alır -->
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Adres</td>
+                <td>:</td>
+                <td>
+                    <textarea name="adres">Adres Bilginiz</textarea>
+                    <!-- textarea içine yazılanlar çok satırlı olur -->
+                    <!-- İçinde veriyle gelmesini istiyorsanız içine yazın -->
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="submit" name=kaydet" value="KAYDET">
+                    <!-- submit butonu formu gönderir -->
+                </td>
+            </tr>
+        </table>
+        <!-- Table'daki her şeyi yazdıktan sonra form'u wrap ettik -->
+    </form>
+</body>
+</html>

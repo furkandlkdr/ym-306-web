@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Formu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        input[type="text"], input[type="email"], input[type="password"], textarea, select {
+            width: 90%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <!-- Style tamamen opsiyonel, ders içeriğinde yok -->
+</head>
+<body>
+    <form name="uyeform" method="post">
+        <table>
+            <tr>
+                <td>Ad:</td>
+                <td><input type="text" name="ad" ></td>
+            </tr>
+            <tr>
+                <td>Soyad:</td>
+                <td><input type="text" name="soyad" ></td>
+            </tr>
+            <tr>
+                <td>E-posta:</td>
+                <td><input type="email" name="eposta" ></td>
+            </tr>
+            <tr>
+                <td>Şifre:</td>
+                <td><input type="password" name="sifre" ></td>
+            </tr>
+            <tr>
+                <td>Cinsiyet:</td>
+                <td>
+                    <input type="radio" name="cins" value="kadin"> Kadın
+                    <input type="radio" name="cins" value="erkek" checked> Erkek
+                    <input type="radio" name="cins" value="diger"> Diğer
+                </td>
+            </tr>
+            <tr>
+                <<td>Yaş</td>
+                <td>
+                    <select name="yas">
+                        <option value="0">0-18</option>
+                        <option value="1">19-30</option>
+                        <option value="2">31-50</option>
+                        <option value="3">51+</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Şehir</td>
+                <td>
+                    <select name="sehir">
+                        <option value="6">Ankara</option>
+                        <option value="34">İstanbul</option>
+                        <option value="35">İzmir</option>
+                        <option value="38" selected>Kayseri</option>
+                    </select>
+            </tr>
+            <tr>
+                <td>Açık adres:</td>
+                <td><textarea name="adres"></textarea></td>
+            </tr>
+            <tr>
+                <td>Mezuniyet</td>
+                <td>
+                    <input type="radio" name="mezuniyet" value="0"> Ortaokul
+                    <input type="radio" name="mezuniyet" value="1"> Lise
+                    <input type="radio" name="mezuniyet" value="2" checked> Üniversite
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="submit" value="Kayıt Ol">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
