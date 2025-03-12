@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+.container {
+    width: 90%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 10px;
+}
+.header {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #4a69bd;
+    color: white;
+}
+
+.time-col {
+    width: 10% !important;
+    float: left;
+}
+
+.column {
+    width: 18%;
+    float: left;
+}
+
+.column-header {
+    padding: 10px 0;
+    text-align: center;
+    font-weight: bold;
+    background-color: #6a89cc;
+    color: white;
+}
+
+.cell {
+    min-height: 50px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.divider {
+    background-color: orange;
+}
+.grow-4 {
+    height: 215px;
+}
+.grow-3 {
+    height: 160px;
+}
+.even > .cell {
+    background-color: gray;
+}
+.odd > .cell {
+    background-color: lightslategray;
+}
+.day {
+    width: 19%;
+    float: left;
+    margin-right: 1%;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.clear {
+    clear: both;
+}

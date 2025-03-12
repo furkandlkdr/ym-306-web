@@ -1,0 +1,69 @@
+@charset "utf-8";
+body {
+    font-family: 'Courier New', Courier, monospace; /* yazı fontunu değiştirmek için yazıyoruz, font face yaparak dışardan font ekleyebiliriz */
+    font-size: 14px; /* Font büyüklüğünü de buradan ayarlayabiliriz */
+    background-color: #f0f0f0; /* arka plan rengini değiştirmek için yazıyoruz */
+    /* background-image: url('https://picsum.photos/1920/1080'); /* arka plan resmi için kullanıyoruz 
+    background-repeat: no-repeat; /* resmi tekrar etmemesi için 
+    background-position: right center; /* resmin konumunu ayarlamak için, bizde 1080p olduğu için çalışmıyor */
+}
+/* 3 farklı şekilde özelliği ekleyebiliriz, taglerin içine yazarak, class ve id ile seçerek, taglerin içine yazarak. */
+.div_1 { /* class ile seçme */
+    color: #f00;
+    font-size: 20px;
+    border: 2px solid #000; /* kenarlık eklemek için, 3 param. alıyor boyut, özellik, renk */
+    width: 600px;
+    height: 200px; /* genişlik ve yükseklik eklemek için */
+    text-align: center; /* yazıyı hizalamak için */
+}
+
+#div_2 { /* id ile seçme */
+    color: #00f;
+    font-size: 16px;
+    border: 1px solid #f00;
+    text-align: right;
+    width: 800px;
+    height: 150px;
+    /* margin: 30px;  Divin, dışındakilere uzaklığını belirtmek için */
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}
+
+.div_3 {
+    width: 400px;
+    height: 250px;
+    border: 3px dashed #0f0; /* çizgili kenarlık eklemek için, dashed, dotted var */
+    font-size: 30px;
+    margin: 20px; /* Divin, dışındakilere uzaklığını belirtmek için */
+    /* divin dışındaki boşluğu ayarlamak için */
+    padding: 20px; /* içerideki boşluğu her taraftan ayarlamak için */
+    /* padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px; */
+    /* padding'de verdiğimiz değerler Div genişliğini arttırıyor. */
+}
+
+.kare {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #000;
+}
+
+.hizala_1 {
+    float: right;
+}
+
+.hizala_2 {
+    float: right;
+}
+
+.hizala_3 {
+    float: right;
+}
+
+.hizalama_bitir {
+    clear: both;
+}
