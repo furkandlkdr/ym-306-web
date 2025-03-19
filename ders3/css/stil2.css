@@ -1,68 +1,65 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
     background-color: #f5f5f5;
 }
 .container {
     width: 90%;
+    height: 90vh;
     margin: 0 auto;
     background-color: white;
     padding: 10px;
 }
+
+.col {
+    float: left;
+    width: 200px;
+}
+
+.left {
+    width: 75px !important;
+}
+
+.left > .cell {
+    font-weight: bolder;
+}
+
 .header {
+    background-color: #b4cac7 !important;
     text-align: center;
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #4a69bd;
-    color: white;
-}
-
-.time-col {
-    width: 10% !important;
-    float: left;
-}
-
-.column {
-    width: 18%;
-    float: left;
-}
-
-.column-header {
-    padding: 10px 0;
-    text-align: center;
-    font-weight: bold;
-    background-color: #6a89cc;
-    color: white;
+    font-weight: bolder;
 }
 
 .cell {
-    min-height: 50px;
-    width: 100%;
     text-align: center;
-    margin-bottom: 5px;
+    align-content: center;
+    min-height: 60px;
+    padding: 0 10px;
+    border: 1px solid #000;
+    margin: 0;
+    background-color: #dee6f0;
 }
+
 .divider {
+    text-align: center;
+    align-content: center;
+    min-height: 20px;
+    padding: 0 10px;
+    border: 1px solid orange;
+    margin: 0;
     background-color: orange;
 }
+
 .grow-4 {
-    height: 215px;
+    height: 246px; 
 }
+
 .grow-3 {
-    height: 160px;
+    height: 184px; 
 }
-.even > .cell {
-    background-color: gray;
-}
-.odd > .cell {
-    background-color: lightslategray;
-}
-.day {
-    width: 19%;
-    float: left;
-    margin-right: 1%;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
+
+.even {
+    background-color: #b4cac7 !important;
 }
 
 .clear {
