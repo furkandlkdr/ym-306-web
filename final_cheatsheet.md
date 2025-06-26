@@ -525,15 +525,170 @@ echo "Toplam:" . $tpl;
 ```
 
 Bu kod:
-1. Kullanıcının belirttiği aralıkta rastgele sayılar üretir
+1. Kullanıcının belirttiğı aralıkta rastgele sayılar üretir
 2. Sadece çift sayıları diziye ekler
 3. Tek sayı gelirse döngü sayacını azaltarak tekrar dener
 4. Eklenen çift sayıların toplamını hesaplar
 
-## 7. Sonuç ve Öneriler
+## 7. Sınav Soruları ve Çözümleri
 
-PHP, web tabanlı uygulamalar geliştirmek için güçlü bir programlama dilidir. Temel PHP yapıları (değişkenler, döngüler, koşullu ifadeler) öğrenildikten sonra, form verilerini işleme ve veritabanı ile etkileşim gibi daha karmaşık konulara geçilebilir.
+Bu bölümde sınavda çıkan sorular ve çözümleri yer almaktadır. Tüm çözümler ders içeriklerine dayanmaktadır.
 
-MySQL veritabanı bağlantısı, web uygulamalarının veri depolama ve sorgulama yeteneklerini genişletir. PHP ve MySQL birlikte kullanıldığında, dinamik ve etkileşimli web siteleri oluşturmak mümkündür.
+### Soru 1: Veritabanı Bağlantısı
 
-Bu ders notları, PHP ve MySQL ile web programlamaya başlamak için temel bir rehber niteliğindedir. Daha fazla bilgi için PHP ve MySQL'in resmi dokümantasyonlarına başvurulabilir.
+**Soru:** Veritabanı ismi "öğrenci" kullanıcı adı "Kayseri" Şifresi "123" olan veri tabanına bağlanın.
+
+**Çözüm:**
+
+```php
+<?php
+// Veritabanı bağlantısı
+$baglan = mysqli_connect("localhost", "Kayseri", "123");
+mysqli_select_db($baglan, "öğrenci");
+
+// Bağlantı kontrolü
+if (!$baglan) {
+    echo "Veri Baglanti Hatasi!!!!!!";
+    echo mysqli_error();
+    exit;
+}
+
+// Karakter seti ayarları (Türkçe karakter desteği için)
+mysqli_query($baglan, "SET NAMES 'utf8'");
+mysqli_query($baglan, "SET CHARACTER SET 'utf8'");
+mysqli_query($baglan, "SET COLLATION_CONNECTION = 'utf8_turkish_ci'");
+date_default_timezone_set('Europe/Istanbul');
+?>
+```
+
+**Açıklama:** 
+Bu kod, ders8/baglanti.php dosyasındaki örnekten uyarlanmıştır. `mysqli_connect()` fonksiyonu ile MySQL sunucusuna bağlanırız. İlk parametre sunucu adresi (localhost), ikinci parametre kullanıcı adı (Kayseri), üçüncü parametre şifre (123)'tür. `mysqli_select_db()` ile veritabanını seçeriz. Bağlantı kontrolü ve karakter seti ayarları da eklenir.
+
+### Soru 2: Veri Silme İşlemi
+
+**Soru:** "sil.php" dosyası içerisinde id'si verilen bir dosyanın veri tabanından silme işlemini yap.
+
+**Çözüm:**
+
+```php
+<?php
+include("baglanti.php");
+
+// ID'si verilen kaydı silme sorgusu
+mysqli_query($baglan, "delete from tablo_adi where id=" . $_GET['sil']);
+
+// İşlem tamamlandıktan sonra yönlendirme
+header('location:ana_sayfa.php');
+?>
+```
+
+**Açıklama:**
+Bu kod, ders8/musteri_sil.php dosyasındaki örneğe dayanmaktadır. `include("baglanti.php")` ile veritabanı bağlantısını dahil ederiz. `mysqli_query()` fonksiyonu ile DELETE sorgusu çalıştırılır. `$_GET['sil']` ile URL'den gelen ID parametresi alınır. İşlem sonrası `header()` ile başka sayfaya yönlendirme yapılır.
+
+### Soru 3: Kullanıcı Listesi
+
+**Soru:** "kullanıcı" adlı tablodaki kullanıcı adı ve şifreleri html ve PHP kullanarak listele.
+
+**Çözüm:**
+
+```php
+<?php
+include("baglanti.php");
+?>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kullanıcı Listesi</title>
+</head>
+<body>
+    <table border="1" cellspacing="0" cellpadding="5">
+        <tr bgcolor="#000000">
+            <td style="color: white;">Sıra</td>
+            <td style="color: white;">Kullanıcı Adı</td>
+            <td style="color: white;">Şifre</td>
+        </tr>
+        <?php
+        $i = 0;
+        $sql = mysqli_query($baglan, "select * from kullanıcı order by id asc");
+        while($satir = mysqli_fetch_assoc($sql)) {
+            $i++;
+            if($i % 2 == 0) {
+                $rnk = '#FFFFFF';
+            } else {
+                $rnk = '#CCC';
+            }
+        ?>
+        <tr bgcolor="<?php echo $rnk; ?>">
+            <td><?php echo $i; ?></td>
+            <td><?php echo $satir['kullanici_adi']; ?></td>
+            <td><?php echo $satir['sifre']; ?></td>
+        </tr>
+        <?php
+        }
+        ?>
+    </table>
+</body>
+</html>
+```
+
+**Açıklama:**
+Bu kod, ders8/musteri.php dosyasındaki tablo listeleme örneğinden uyarlanmıştır. `mysqli_query()` ile SELECT sorgusu çalıştırılır. `mysqli_fetch_assoc()` ile sonuçlar ilişkisel dizi olarak alınır. `while` döngüsü ile tüm kayıtlar işlenir. HTML tablo yapısı ile veriler listelenir. Sıra numarası çift/tek kontrolü ile farklı renk ataması yapılır.
+
+### Soru 4: Tek Sayıların Ortalaması
+
+**Soru:** İki sayı arasındaki tek sayıların ortalamasını hesaplayan ve sonucu geri döndüren bir fonksiyon yaz.
+
+**Çözüm:**
+
+```php
+<?php
+function fnk_tek_sayilar_ortalama($sayi1, $sayi2) {
+    // Küçük ve büyük sayıyı belirleme
+    if($sayi1 > $sayi2) {
+        $bs = $sayi1;
+        $ks = $sayi2;
+    } else {
+        $bs = $sayi2;
+        $ks = $sayi1;
+    }
+    
+    $toplam = 0;
+    $adet = 0;
+    
+    // Aralıktaki tek sayıları bulma ve toplama
+    for($i = $ks; $i <= $bs; $i++) {
+        if($i % 2 == 1) { // Tek sayı kontrolü
+            $toplam = $toplam + $i;
+            $adet = $adet + 1;
+        }
+    }
+    
+    // Ortalama hesaplama
+    if($adet > 0) {
+        $ortalama = $toplam / $adet;
+        return $ortalama;
+    } else {
+        return 0; // Tek sayı yoksa 0 döndür
+    }
+}
+
+// Fonksiyon kullanım örneği
+$sonuc = fnk_tek_sayilar_ortalama(5, 15);
+echo "Tek sayıların ortalaması: " . $sonuc;
+?>
+```
+
+**Açıklama:**
+Bu fonksiyon, ders içeriklerindeki fonksiyon tanımlama (ders6/ders6_6.php) ve döngü örneklerine (final_cheatsheet.md'deki for döngüsü ve mod alma örnekleri) dayanmaktadır. 
+
+- `function` anahtar sözcüğü ile fonksiyon tanımlanır
+- İki parametre alır: başlangıç ve bitiş sayıları  
+- `if-else` ile büyük-küçük sayı belirlenir
+- `for` döngüsü ile aralıktaki sayılar kontrol edilir
+- `%` (mod) operatörü ile tek sayı kontrolü yapılır (`i % 2 == 1`)
+- Toplam ve adet sayacı tutulur
+- `return` ile sonuç geri döndürülür
+- Sıfıra bölme hatası kontrolü yapılır
+
+Bu çözümler tamamen ders içeriklerinde işlenen konulara dayanmaktadır ve ders dosyalarındaki kod örneklerinden uyarlanmıştır.
